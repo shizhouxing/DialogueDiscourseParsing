@@ -16,17 +16,13 @@ class Agent():
         self.dim_feature_bi = FLAGS.dim_feature_bi
         self.use_structured = FLAGS.use_structured
         self.use_speaker_attn = FLAGS.use_speaker_attn     
-        self.dim_state = 4 * self.num_units + (self.dim_feature_bi if FLAGS.use_traditional else 0)
-        self.regularizer_scale = FLAGS.regularizer_scale
+        self.dim_state = 4 * self.num_units + self.dim_feature_bi
         self.train_keep_prob = FLAGS.keep_prob                       
         
         self.fixed_noise = tf.placeholder(tf.int32)                
         self.keep_prob = tf.placeholder_with_default(1.0, ())
         self.learning_rate = tf.placeholder(tf.float32)
-        if FLAGS.use_adam:
-            self.optimizer = tf.train.AdamOptimizer(self.learning_rate)
-        else:
-            self.optimizer = tf.train.GradientDescentOptimizer(self.learning_rate)        
+        self.optimizer = tf.train.GradientDescentOptimizer(self.learning_rate)        
         
         with tf.variable_scope(scope):
             self._build_input()
@@ -136,9 +132,7 @@ class Agent():
     def _build_policy_network(self):
         with tf.variable_scope("policy_network"):
             h = tf.layers.dense(
-                self.state, self.num_units * 2, activation=tf.tanh,
-                kernel_regularizer=tf.contrib.layers.l2_regularizer(self.regularizer_scale),
-                bias_regularizer=tf.contrib.layers.l2_regularizer(self.regularizer_scale)
+                self.state, self.num_units * 2, activation=tf.tanh
             )
             if self.is_multi:
                 self.policy = tf.nn.softmax(tf.layers.dense(h, self.num_relations))

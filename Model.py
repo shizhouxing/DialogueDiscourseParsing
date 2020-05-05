@@ -17,7 +17,6 @@ class Model():
         self.use_speaker_attn = FLAGS.use_speaker_attn
         self.use_shared_encoders = FLAGS.use_shared_encoders
         self.use_random_structured = FLAGS.use_random_structured
-        self.use_traditional = FLAGS.use_traditional
         
         self.learning_rate = tf.Variable(
             float(FLAGS.learning_rate), trainable=False, dtype=tf.float32)                                   
@@ -331,16 +330,15 @@ class Model():
                 hc[idx_j],
             ], axis=-1)
             
-        if self.use_traditional:
-            h = np.concatenate([
-                h,
-                [
-                    j - i, 
-                    speaker_i == speaker_j,
-                    batch[k]["edus"][i]["turn"] == batch[k]["edus"][j]["turn"],
-                    (i in self.parents[k][j]) or (j in self.parents[k][i])
-                ]
-            ], axis=-1)
+        h = np.concatenate([
+            h,
+            [
+                j - i, 
+                speaker_i == speaker_j,
+                batch[k]["edus"][i]["turn"] == batch[k]["edus"][j]["turn"],
+                (i in self.parents[k][j]) or (j in self.parents[k][i])
+            ]
+        ], axis=-1)
             
         return h
         

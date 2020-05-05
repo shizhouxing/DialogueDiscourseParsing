@@ -14,10 +14,7 @@ class NonStructured_Encoder():
         self.fixed_noise = tf.placeholder(tf.int32)
         self.keep_prob = tf.placeholder_with_default(1.0, ())
         self.learning_rate = tf.placeholder(tf.float32)
-        if FLAGS.use_adam:
-            self.optimizer = tf.train.AdamOptimizer(self.learning_rate)
-        else:
-            self.optimizer = tf.train.GradientDescentOptimizer(self.learning_rate)      
+        self.optimizer = tf.train.GradientDescentOptimizer(self.learning_rate)      
         
         self.recurrent_noise_in, self.recurrent_noise_out, self.recurrent_noise = [], [], None
     

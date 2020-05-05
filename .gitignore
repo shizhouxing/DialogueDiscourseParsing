@@ -1,0 +1,7 @@
+model*
+log*
+*model
+*log
+*.pyc
+data
+

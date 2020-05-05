@@ -84,18 +84,6 @@ def load_data(filename, map_relations):
         (len(data), cnt_edus, cnt_relations, cnt_relations_backward)
     print "%d edus have multiple parents" % cnt_multi_parents    
         
-    if FLAGS.preview_data:
-        map_relations_inv = {}
-        for item in map_relations:
-            map_relations_inv[map_relations[item]] = item
-        for i, dialog in enumerate(data):
-            for j, edu in enumerate(dialog["edus"]):
-                print j, edu["speaker"], ":", edu["text_raw"]
-            print "ground truth:"
-            for relation in dialog["relations"]:
-                print relation["x"], relation["y"], map_relations_inv[relation["type"]]
-            print
-        
     return data
 
 def build_vocab(data):
@@ -184,3 +172,12 @@ def init_grad(params):
         np.zeros(shape=param.shape)
         for param in params
     ]
+
+def get_batches(data, batch_size, sort=True):
+    if sort:
+        data = sorted(data, key=lambda dialog: len(dialog['edus']))
+    while (len(data[0]['edus']) == 0): data = data[1:]
+    batches = []
+    for i in range(len(data) / batch_size + bool(len(data) % batch_size)):
+        batches.append(data[i * batch_size : (i + 1) * batch_size])
+    return batches
