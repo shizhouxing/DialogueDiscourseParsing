@@ -76,3 +76,7 @@ For example, to train the model with default settings:
 ```
 python main.py --train
 ```
+
+## Baselines
+
+For baselines (`Deep+MST`, `Deep+ILP`, `Deep+Greedy`), see [here](./baseline).

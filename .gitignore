@@ -4,4 +4,5 @@ log*
 *log
 *.pyc
 data
+glove
 

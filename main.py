@@ -11,7 +11,7 @@ FLAGS = tf.flags.FLAGS
 tf.flags.DEFINE_boolean('train', False, 'train model')
 tf.flags.DEFINE_integer('display_interval', 500, 'step interval to display information')
 tf.flags.DEFINE_boolean('show_predictions', False, 'show predictions in the test stage')
-tf.flags.DEFINE_string('word_vector', '../glove/glove.6B.100d.txt', 'word vector')
+tf.flags.DEFINE_string('word_vector', 'glove/glove.6B.100d.txt', 'word vector')
 tf.flags.DEFINE_string('prefix', 'dev', 'prefix for storing model and log')
 tf.flags.DEFINE_integer('vocab_size', 1000, 'vocabulary size')
 tf.flags.DEFINE_integer('max_edu_dist', 20, 'maximum distance between two related edus') 
