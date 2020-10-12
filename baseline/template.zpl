@@ -1,3 +1,5 @@
+# Reference https://github.com/irit-melodi/irit-stac/blob/ec36fac93d26101ba1014db5540483a182472918/stac/harness/ilp/template.zpl
+
 # Template with relation handling
 
 # Automatically generated
