@@ -46,7 +46,7 @@ We use JSON format for data. The data file should contain an array consisting of
 
 ## STAC Corpus
 
-We used the linguistic-only [STAC corpus](https://www.irit.fr/STAC/corpus.html). The latest available verison on the website is [stac-linguistic-2018-05-04.zip](https://www.irit.fr/STAC/stac-linguistic-2018-05-04.zip). It appears that test data is missing in this version. We share the [test data we used](https://drive.google.com/file/d/1KmTw_DbJawNfl6asqtRnG_f4BwXtl4b7/view?usp=sharing) from the 2018-03-21 version.
+We used the linguistic-only [STAC corpus](https://www.irit.fr/STAC/corpus.html). The latest available verison on the website is [stac-linguistic-2018-05-04.zip](https://www.irit.fr/STAC/stac-linguistic-2018-05-04.zip). It appears that test data is missing in this version. We share the [test data we used](https://drive.google.com/file/d/1rdUUyVxRZEgg8fKf2ILI2TDw8v6kAdYF/view?usp=sharing) from the 2018-03-21 version.
 
 
 To process a raw dataset into our JSON format, run:
